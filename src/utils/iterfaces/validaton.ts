@@ -1,3 +1,3 @@
-interface Validator<T> {
-  isValid(input: T): boolean;
+export interface Validation {
+  validate: (input: any) => Error | null;
 }
