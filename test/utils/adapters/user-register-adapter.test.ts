@@ -39,15 +39,10 @@ describe('user-register-adapter', () => {
 
       //act
 
-      try {
-        const res = sut.parse(user);
-      } catch (e) {
-        let message = '';
-        if (e instanceof Error) {
-          message += e.message;
-        }
-        console.log(message);
-      }
+      expect(() => sut.parse(user)).toThrowError(
+        'String must contain at least 3 character(s)'
+      );
+
       //assert
     });
   });
