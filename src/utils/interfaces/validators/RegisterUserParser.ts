@@ -1,5 +1,5 @@
 export default interface UserRegisterParser {
-  parse(input: unknown): UserRegister;
+  parse(input: unknown): UserRegister | Error;
 }
 
 export type UserRegister = {
