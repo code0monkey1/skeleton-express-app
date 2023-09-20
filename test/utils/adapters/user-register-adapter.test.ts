@@ -59,7 +59,7 @@ describe('user-register-adapter', () => {
       expect(() => sut.parse(user)).toThrowError(expectedError);
     });
   });
-  it(' throws Error when email is invalid and name is less than 3 chars', () => {
+  it('throws Error when email is invalid and name is less than 3 chars', () => {
     //arrange
     const sut = new UserRegisterAdapter();
 
