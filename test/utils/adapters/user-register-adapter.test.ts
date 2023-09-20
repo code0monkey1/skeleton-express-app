@@ -41,7 +41,7 @@ describe('user-register-adapter', () => {
         const result = sut.parse(user);
       } catch (e) {
         if (e instanceof ZodError) {
-          console.log(e.errors[0].message);
+          console.log(e.errors.map((e) => e.message));
         }
       }
 
