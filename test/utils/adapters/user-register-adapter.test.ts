@@ -40,9 +40,7 @@ describe('user-register-adapter', () => {
       try {
         const result = sut.parse(user);
       } catch (e) {
-        if (e instanceof Error) {
-          console.log(e.message);
-        }
+        console.log(e);
       }
 
       //assert
