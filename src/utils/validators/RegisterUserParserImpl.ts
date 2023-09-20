@@ -4,7 +4,7 @@ import UserRegisterParser, {
   UserRegister,
 } from '../interfaces/validators/RegisterUserParser';
 
-class UserRegisterAdapter implements UserRegisterParser {
+export class UserRegisterAdapter implements UserRegisterParser {
   parse(input: unknown): UserRegister {
     /* The `.refine()` method is used to add additional validation rules to the validation schema. In
   this case, it is checking if the `password` field is equal to the `repeat_password` field. If
