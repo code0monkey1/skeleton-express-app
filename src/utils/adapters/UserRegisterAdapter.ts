@@ -32,7 +32,7 @@ export class UserRegisterAdapter implements UserRegisterParser {
       let errorMessage = '';
       if (err instanceof ZodError) {
         errorMessage += err.errors.map(
-          (e) => (errorMessage += e.message + '\n')
+          (e) => (errorMessage += e.message + ' , ')
         );
       } else errorMessage += err;
 
