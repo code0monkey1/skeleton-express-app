@@ -1,9 +1,9 @@
 import { Schema, model } from 'mongoose';
 
 interface User {
-  name: string;
-  email: string;
-  password: string;
+  name: String;
+  email: String;
+  password: String;
 }
 
 const userSchema = new Schema<User>({
