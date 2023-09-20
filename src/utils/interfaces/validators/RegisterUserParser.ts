@@ -1,8 +1,8 @@
-export default interface RegisterRequestParser {
-  parse(input: unknown): RegisterUser;
+export default interface UserRegisterParser {
+  parse(input: unknown): UserRegister;
 }
 
-export type RegisterUser = {
+export type UserRegister = {
   username: String;
   email: String;
   password: String;
