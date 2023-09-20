@@ -50,14 +50,15 @@ describe('UserRegisterParser', () => {
         password: '',
         repeat_password: '',
       };
-      //act
 
+      //act
       jest
         .spyOn(mockUserRegisterAdapter, 'parse')
         .mockReturnValueOnce(new Error('Parse Error'));
 
       const result = userRegister.parse(user);
 
+      //assert
       expect(result).toStrictEqual(new Error('Parse Error'));
     });
   });
