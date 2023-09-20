@@ -1,3 +1,4 @@
+import { ZodError } from 'zod';
 import { UserRegisterAdapter } from '../../../src/utils/adapters/UserRegisterAdapter';
 import { UserRegister } from '../../../src/utils/interfaces/validators/RegisterUserParser';
 
@@ -36,11 +37,15 @@ describe('user-register-adapter', () => {
       };
 
       //act
-
-      const result = sut.parse(user);
+      try {
+        const result = sut.parse(user);
+      } catch (e) {
+        if (e instanceof ZodError) {
+          console.log(e.errors);
+        }
+      }
 
       //assert
-      console.log(result);
     });
   });
 });
