@@ -39,5 +39,26 @@ describe('UserRegisterParser', () => {
     });
   });
 
-  describe('Type to be parsed is Invalid', () => {});
+  describe('Type to be parsed is Invalid', () => {
+    it('will return a user register object', () => {
+      //arrange
+      const userRegister = new UserRegisterParserImpl(mockUserRegisterAdapter);
+
+      const user: UserRegister = {
+        username: '',
+        email: '',
+        password: '',
+        repeat_password: '',
+      };
+      //act
+
+      jest
+        .spyOn(mockUserRegisterAdapter, 'parse')
+        .mockImplementation(() => new Error('Parse Error'));
+
+      expect(() => {
+        userRegister.parse(user);
+      }).toThrowError('Parse Error');
+    });
+  });
 });
