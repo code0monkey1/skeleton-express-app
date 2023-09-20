@@ -59,4 +59,21 @@ describe('user-register-adapter', () => {
       expect(() => sut.parse(user)).toThrowError(expectedError);
     });
   });
+  it(' throws Error when email is invalid and name is less than 3 chars', () => {
+    //arrange
+    const sut = new UserRegisterAdapter();
+
+    const user: UserRegister = {
+      username: 'ab',
+      email: 'vonngmail.com',
+      password: 'watson',
+      repeat_password: 'watson',
+    };
+    let expectedError =
+      'String must contain at least 3 character(s) , Invalid email';
+
+    //act
+    //assert
+    expect(() => sut.parse(user)).toThrowError(expectedError);
+  });
 });
