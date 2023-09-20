@@ -56,9 +56,9 @@ describe('UserRegisterParser', () => {
         .spyOn(mockUserRegisterAdapter, 'parse')
         .mockReturnValueOnce(new Error('Parse Error'));
 
-      expect(() => {
-        userRegister.parse(user);
-      }).toThrowError('Parse Error');
+      const result = userRegister.parse(user);
+
+      expect(result).toStrictEqual(new Error('Parse Error'));
     });
   });
 });
