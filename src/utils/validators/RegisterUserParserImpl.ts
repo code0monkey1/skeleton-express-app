@@ -1,11 +1,9 @@
-import {
-  default as RegisterRequestParser,
-  RegisterUser,
-  default as RegisterUserParser,
+import UserRegisterParser, {
+  UserRegister,
 } from '../interfaces/validators/RegisterUserParser';
 
-class RegisterUserParserImpl implements RegisterUserParser {
-  parse(input: unknown): RegisterUser | Error {
+class UserRegisterAdapter implements UserRegisterParser {
+  parse(input: unknown): UserRegister {
     throw new Error('Method not implemented.');
   }
 }
