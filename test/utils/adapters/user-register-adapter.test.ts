@@ -39,11 +39,10 @@ describe('user-register-adapter', () => {
 
       //act
 
+      //assert
       expect(() => sut.parse(user)).toThrowError(
         'String must contain at least 3 character(s)'
       );
-
-      //assert
     });
   });
 });
