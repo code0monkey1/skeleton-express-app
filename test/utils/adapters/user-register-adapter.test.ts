@@ -34,7 +34,7 @@ describe('user-register-adapter', () => {
         username: 'ch',
         email: 'vonn@gmail.com',
         password: 'watson',
-        repeat_password: 'wagson',
+        repeat_password: 'watson',
       };
 
       //act
