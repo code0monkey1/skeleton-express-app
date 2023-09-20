@@ -1,3 +1,3 @@
-interface SchemaValidator {
-  isValid(obj: object): boolean;
+interface SchemaValidator<T> {
+  isValid(obj: unknown): boolean | T;
 }
