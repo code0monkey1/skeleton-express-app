@@ -36,7 +36,7 @@ export class UserRegisterAdapter implements UserRegisterParser {
         );
       } else errorMessage += err;
 
-      return CustomErrorHandler.parsingError(errorMessage);
+      throw CustomErrorHandler.parsingError(errorMessage);
     }
   }
 }
