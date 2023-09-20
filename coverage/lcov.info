@@ -62,13 +62,11 @@ DA:32,3
 DA:33,3
 DA:34,3
 DA:35,4
-DA:37,0
-DA:39,3
-LF:13
+DA:38,3
+LF:12
 LH:12
 BRDA:33,0,0,3
-BRDA:33,0,1,0
-BRF:2
+BRF:1
 BRH:1
 end_of_record
 TN:

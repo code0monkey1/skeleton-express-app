@@ -34,8 +34,7 @@ export class UserRegisterAdapter implements UserRegisterParser {
         errorMessage += err.errors.map(
           (e) => (errorMessage += e.message + ' , ')
         );
-      } else errorMessage += err;
-
+      }
       throw CustomErrorHandler.parsingError(errorMessage);
     }
   }
