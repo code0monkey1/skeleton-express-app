@@ -1,5 +1,6 @@
 // validationSchemas.ts
-import { z } from 'zod';
+import { ZodError, z } from 'zod';
+import CustomErrorHandler from '../../errors/InvalidParamError';
 import UserRegisterParser, {
   UserRegister,
 } from '../interfaces/validators/RegisterUserParser';
@@ -12,18 +13,29 @@ export class UserRegisterAdapter implements UserRegisterParser {
   and the path of the error will be set to `['repeat_password']`. This allows for more specific
   error messages and error paths when validating the data. */
 
-    const registerSchema = z
-      .object({
-        username: z.string().min(3).max(20).trim(),
-        email: z.string().email().trim(),
-        password: z.string().min(6),
-        repeat_password: z.string().min(6),
-      })
-      .refine((data) => data.password === data.repeat_password, {
-        message: " : Passwords don't match",
-        path: ['repeat_password'], // path of error
-      });
+    try {
+      const registerSchema = z
+        .object({
+          username: z.string().min(3).max(20).trim(),
+          email: z.string().email().trim(),
+          password: z.string().min(6),
+          repeat_password: z.string().min(6),
+        })
+        .refine((data) => data.password === data.repeat_password, {
+          message: " : Passwords don't match",
+          path: ['repeat_password'], // path of error
+        });
 
-    return registerSchema.parse(input);
+      return registerSchema.parse(input);
+    } catch (err) {
+      let errorMessage = '';
+      if (err instanceof ZodError) {
+        errorMessage += err.errors.map(
+          (e) => (errorMessage += e.message + '\n')
+        );
+      } else errorMessage += err;
+
+      return CustomErrorHandler.parsingError(errorMessage);
+    }
   }
 }
