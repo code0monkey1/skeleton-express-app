@@ -30,7 +30,7 @@ describe('user-register-adapter', () => {
       const sut = new UserRegisterAdapter();
 
       const user: UserRegister = {
-        username: 'chiranjeev',
+        username: 'ch',
         email: 'vonn@gmail.com',
         password: 'watson',
         repeat_password: 'wagson',
