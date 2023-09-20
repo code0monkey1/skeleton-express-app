@@ -1,10 +1,5 @@
 export default interface RegisterRequestParser {
-  parse(input: RegisterRequestParser.Request): RegisterRequestParser.Response;
-}
-
-export namespace RegisterRequestParser {
-  export type Request = unknown;
-  export type Response = RegisterUser | Error;
+  parse(input: unknown): RegisterUser;
 }
 
 export type RegisterUser = {
