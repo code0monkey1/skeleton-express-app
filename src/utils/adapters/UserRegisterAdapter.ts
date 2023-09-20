@@ -1,6 +1,7 @@
 // validationSchemas.ts
 import { ZodError, z } from 'zod';
-import CustomErrorHandler from '../../errors/InvalidParamError';
+
+import CustomErrorHandler from '../CustomErrorHandler';
 import UserRegisterParser, {
   UserRegister,
 } from '../interfaces/validators/RegisterUserParser';
