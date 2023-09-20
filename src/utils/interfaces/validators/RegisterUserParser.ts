@@ -3,8 +3,8 @@ export default interface UserRegisterParser {
 }
 
 export type UserRegister = {
-  username: String;
-  email: String;
-  password: String;
-  repeat_password: String;
+  username: string;
+  email: string;
+  password: string;
+  repeat_password: string;
 };
