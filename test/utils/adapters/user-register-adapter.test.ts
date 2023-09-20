@@ -1,4 +1,5 @@
 import { ZodError } from 'zod';
+import CustomErrorHandler from '../../../src/utils/CustomErrorHandler';
 import { UserRegisterAdapter } from '../../../src/utils/adapters/UserRegisterAdapter';
 import { UserRegister } from '../../../src/utils/interfaces/validators/RegisterUserParser';
 
@@ -37,11 +38,12 @@ describe('user-register-adapter', () => {
       };
 
       //act
-      try {
-        const result = sut.parse(user);
-      } catch (e) {
-        console.log(e);
-      }
+
+      expect(() => sut.parse(user)).toThrowError(
+        CustomErrorHandler.parsingError(`String must contain at least 3 character(s)
+      ,String must contain at least 3 character(s)
+       : Passwords don't match`)
+      );
 
       //assert
     });
