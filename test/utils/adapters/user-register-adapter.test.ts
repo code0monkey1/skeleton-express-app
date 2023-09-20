@@ -1,5 +1,3 @@
-import { ZodError } from 'zod';
-import CustomErrorHandler from '../../../src/utils/CustomErrorHandler';
 import { UserRegisterAdapter } from '../../../src/utils/adapters/UserRegisterAdapter';
 import { UserRegister } from '../../../src/utils/interfaces/validators/RegisterUserParser';
 
@@ -26,7 +24,7 @@ describe('user-register-adapter', () => {
     });
   });
   describe('when data is invalid', () => {
-    it(' returns username length less than 3 , when username is `ab` ', () => {
+    it(' throws Error when username length is less than 3 chars', () => {
       //arrange
       const sut = new UserRegisterAdapter();
 
@@ -37,12 +35,11 @@ describe('user-register-adapter', () => {
         repeat_password: 'watson',
       };
 
-      //act
+      const expectedError = 'String must contain at least 3 character(s)';
 
+      //act
       //assert
-      expect(() => sut.parse(user)).toThrowError(
-        'String must contain at least 3 character(s)'
-      );
+      expect(() => sut.parse(user)).toThrowError(expectedError);
     });
   });
 });
