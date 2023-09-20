@@ -1,4 +1,4 @@
-interface RegisterRequestParser {
+export default interface RegisterRequestParser {
   parse(input: RegisterRequestParser.Request): RegisterRequestParser.Response;
 }
 
