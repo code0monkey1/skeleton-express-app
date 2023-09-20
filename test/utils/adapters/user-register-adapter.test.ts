@@ -41,5 +41,22 @@ describe('user-register-adapter', () => {
       //assert
       expect(() => sut.parse(user)).toThrowError(expectedError);
     });
+    it(' throws Error when email is invalid', () => {
+      //arrange
+      const sut = new UserRegisterAdapter();
+
+      const user: UserRegister = {
+        username: 'abc',
+        email: 'vonngmail.com',
+        password: 'watson',
+        repeat_password: 'watson',
+      };
+
+      const expectedError = 'Invalid email';
+
+      //act
+      //assert
+      expect(() => sut.parse(user)).toThrowError(expectedError);
+    });
   });
 });
