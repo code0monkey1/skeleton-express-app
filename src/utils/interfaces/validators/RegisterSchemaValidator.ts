@@ -1,3 +1,3 @@
 interface RegisterSchemaValidator {
-  isValid(obj: unknown): boolean | RegisterSchemaValidator;
+  isValid(obj: unknown): boolean | null;
 }
