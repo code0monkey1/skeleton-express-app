@@ -54,7 +54,7 @@ describe('UserRegisterParser', () => {
 
       jest
         .spyOn(mockUserRegisterAdapter, 'parse')
-        .mockImplementation(() => new Error('Parse Error'));
+        .mockImplementation(() => new Error('Method not implemented.'));
 
       expect(() => {
         userRegister.parse(user);
