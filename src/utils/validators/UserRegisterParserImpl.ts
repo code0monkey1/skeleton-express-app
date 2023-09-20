@@ -4,7 +4,9 @@ import UserRegisterParser, {
 import { UserRegisterAdapter } from './UserRegisterAdapter';
 export class UserRegisterParserImpl implements UserRegisterParser {
   constructor(private readonly userRegisterAdapter: UserRegisterAdapter) {}
-  parse(input: unknown): UserRegister {
-    return this.userRegisterAdapter.parse(input);
+  parse(input: unknown): UserRegister | Error {
+    const result = this.userRegisterAdapter.parse(input);
+
+    return result;
   }
 }
