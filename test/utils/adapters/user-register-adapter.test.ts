@@ -26,12 +26,12 @@ describe('user-register-adapter', () => {
     });
   });
   describe('when data is invalid', () => {
-    it('returns parsed data', () => {
+    it(' returns username length less than 3 , when username is `ab` ', () => {
       //arrange
       const sut = new UserRegisterAdapter();
 
       const user: UserRegister = {
-        username: 'ch',
+        username: 'ab',
         email: 'vonn@gmail.com',
         password: 'watson',
         repeat_password: 'watson',
@@ -40,9 +40,9 @@ describe('user-register-adapter', () => {
       //act
 
       expect(() => sut.parse(user)).toThrowError(
-        CustomErrorHandler.parsingError(`String must contain at least 3 character(s)
-      ,String must contain at least 3 character(s)
-       : Passwords don't match`)
+        CustomErrorHandler.parsingError(
+          `String must contain at least 3 character(s)`
+        )
       );
 
       //assert
