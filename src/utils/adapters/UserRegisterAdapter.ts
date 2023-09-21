@@ -1,10 +1,9 @@
 // validationSchemas.ts
 import { ZodError, z } from 'zod';
 
+import { UserRegister } from '../../types';
 import CustomErrorHandler from '../CustomErrorHandler';
-import UserRegisterParser, {
-  UserRegister,
-} from '../interfaces/validators/RegisterUserParser';
+import UserRegisterParser from '../interfaces/validators/RegisterUserParser';
 
 export class UserRegisterAdapter implements UserRegisterParser {
   parse(input: unknown): UserRegister | Error {

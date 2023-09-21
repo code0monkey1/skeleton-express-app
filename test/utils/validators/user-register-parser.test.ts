@@ -1,5 +1,6 @@
+import { UserRegister } from '../../../src/types';
 import { UserRegisterAdapter } from '../../../src/utils/adapters/UserRegisterAdapter';
-import { UserRegister } from '../../../src/utils/interfaces/validators/RegisterUserParser';
+
 import { UserRegisterParserImpl } from '../../../src/utils/validators/UserRegisterParserImpl';
 
 describe('UserRegisterParser', () => {

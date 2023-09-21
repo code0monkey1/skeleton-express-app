@@ -1,5 +1,5 @@
+import { UserRegister } from '../../../src/types';
 import { UserRegisterAdapter } from '../../../src/utils/adapters/UserRegisterAdapter';
-import { UserRegister } from '../../../src/utils/interfaces/validators/RegisterUserParser';
 
 describe('user-register-adapter', () => {
   describe('when data is valid', () => {
@@ -71,6 +71,40 @@ describe('user-register-adapter', () => {
     };
     let expectedError =
       'String must contain at least 3 character(s) , Invalid email';
+
+    //act
+    //assert
+    expect(() => sut.parse(user)).toThrowError(expectedError);
+  });
+
+  it('throws Error when password and repeat_password are not the same', () => {
+    //arrange
+    const sut = new UserRegisterAdapter();
+
+    const user: UserRegister = {
+      username: 'abc',
+      email: 'vonn@gmail.com',
+      password: 'abcdef',
+      repeat_password: 'defdef',
+    };
+    let expectedError = `Passwords don't match`;
+
+    //act
+    //assert
+    expect(() => sut.parse(user)).toThrowError(expectedError);
+  });
+
+  it('when password is less then 6 letters long', () => {
+    //arrange
+    const sut = new UserRegisterAdapter();
+
+    const user: UserRegister = {
+      username: 'abc',
+      email: 'vonn@gmail.com',
+      password: 'abcde',
+      repeat_password: 'abcde',
+    };
+    let expectedError = `String must contain at least 6 character(s)`;
 
     //act
     //assert
