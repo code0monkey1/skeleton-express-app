@@ -1,9 +1,13 @@
+import { UserProps } from '../../../types';
+import CustomErrorHandler from '../../../utils/CustomErrorHandler';
+import { UseCase } from '../use-case';
 
-export interface SignUpInterface <SignUpInterface.Request, SignUpInterface.Response> {
-  execute(userData: SignUpInterface.Request): Promise<SignUpInterface.Response>;
+export interface SignUpUseCase
+  extends UseCase<SignUpUseCase.Request, SignUpUseCase.Response> {
+  execute(userData: SignUpUseCase.Request): Promise<SignUpUseCase.Response>;
 }
 
-export namespace SignUpInterface {
+export namespace SignUpUseCase {
   export type Request = Omit<UserProps, 'id' | 'createdAt' | 'updatedAt'>;
-  export type Response = string | EmailInUseError;
+  export type Response = string | CustomErrorHandler;
 }
