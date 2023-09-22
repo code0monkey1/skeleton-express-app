@@ -61,6 +61,10 @@ class CustomErrorHandler extends Error {
   static parsingError(message = 'Parsing Failed') {
     return new CustomErrorHandler(400, message);
   }
+
+  static emailInUseError(message = 'EmailInUseError') {
+    return new CustomErrorHandler(400, message);
+  }
 }
 
 export default CustomErrorHandler;
