@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1695625083399" clover="3.2.0">
-  <project timestamp="1695625083399" name="All files">
-    <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0" elements="0" coveredelements="0" complexity="0" loc="0" ncloc="0" packages="0" files="0" classes="0"/>
+<coverage generated="1695626742203" clover="3.2.0">
+  <project timestamp="1695626742203" name="All files">
+    <metrics statements="13" coveredstatements="12" conditionals="3" coveredconditionals="3" methods="3" coveredmethods="3" elements="19" coveredelements="18" complexity="0" loc="13" ncloc="13" packages="2" files="2" classes="2"/>
+    <package name="domain.use-cases">
+      <metrics statements="9" coveredstatements="8" conditionals="1" coveredconditionals="1" methods="2" coveredmethods="2"/>
+      <file name="sign-up.ts" path="/Users/chiranjeevthomas/Documents/skeleton-express-app/src/domain/use-cases/sign-up.ts">
+        <metrics statements="9" coveredstatements="8" conditionals="1" coveredconditionals="1" methods="2" coveredmethods="2"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="23" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="errors">
+      <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <file name="EmailInUseError.ts" path="/Users/chiranjeevthomas/Documents/skeleton-express-app/src/errors/EmailInUseError.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="4" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="6" count="1" type="stmt"/>
+      </file>
+    </package>
   </project>
 </coverage>

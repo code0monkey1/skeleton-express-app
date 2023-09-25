@@ -1,5 +1,8 @@
+import HashGenerator from '../../application/interfaces/cryptography/HashGenerator';
 import { CreateUserRepository } from '../../data/repositories/auth/create-user-repository';
-import LoadUserByEmailRepository from '../../data/repositories/auth/load-user-by-email-repository';
+import { LoadUserByEmailRepository } from '../../data/repositories/auth/load-user-by-email-repository';
+import EmailInUseError from '../../errors/EmailInUseError';
+
 import { SignUpUseCase } from '../interfaces/use-cases/sign-up-use-case';
 
 export class SignUp implements SignUpUseCase {
@@ -8,7 +11,19 @@ export class SignUp implements SignUpUseCase {
     private readonly loadUserByEmailRepository: LoadUserByEmailRepository,
     private readonly hashGenerator: HashGenerator
   ) {}
-  execute(userData: SignUpUseCase.Request): Promise<SignUpUseCase.Response> {
-    throw new Error('Method not implemented.');
+  async execute(
+    userData: SignUpUseCase.Request
+  ): Promise<SignUpUseCase.Response> {
+    // if the email exists, throw email in use error
+
+    const user = await this.loadUserByEmailRepository.loadUserByEmail(
+      userData.email
+    );
+
+    if (!user) {
+      throw new EmailInUseError();
+    }
+
+    return user;
   }
 }
