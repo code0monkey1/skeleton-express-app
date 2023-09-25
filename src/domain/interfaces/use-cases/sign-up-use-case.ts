@@ -9,5 +9,5 @@ export interface SignUpUseCase
 
 export namespace SignUpUseCase {
   export type Request = Omit<UserProps, 'id' | 'createdAt' | 'updatedAt'>;
-  export type Response = Pick<UserProps, 'username'> | CustomErrorHandler;
+  export type Response = Pick<UserProps, 'name'> | SchemaValidationError;
 }

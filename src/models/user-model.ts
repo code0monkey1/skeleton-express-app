@@ -1,9 +1,9 @@
 import { Schema, model } from 'mongoose';
 
 interface User {
-  name: String;
-  email: String;
-  password: String;
+  name: string;
+  email: string;
+  hashedPassword: string;
   createdAt: Date;
   updatedAt?: Date;
 }
@@ -12,7 +12,7 @@ const userSchema = new Schema<User>(
   {
     name: String,
     email: String,
-    password: String,
+    hashedPassword: String,
   },
   {
     timestamps: true,
