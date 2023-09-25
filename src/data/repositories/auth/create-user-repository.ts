@@ -7,6 +7,10 @@ export interface CreateUserRepository {
 }
 
 export namespace CreateUserRepository {
-  export type Request = Omit<User, 'id' | 'createdAt' | 'updatedAt'>;
+  export type Request = Omit<
+    User,
+    'id' | 'createdAt' | 'updatedAt' | 'password' | 'repeat_password'
+  > & { hashedPassword: string };
+
   export type Response = string;
 }

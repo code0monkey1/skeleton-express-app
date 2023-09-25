@@ -1,5 +1,5 @@
+import EmailInUseError from '../../../errors/EmailInUseError';
 import { UserProps } from '../../../types';
-import CustomErrorHandler from '../../../utils/CustomErrorHandler';
 import { UseCase } from '../use-case';
 
 export interface SignUpUseCase
@@ -9,5 +9,5 @@ export interface SignUpUseCase
 
 export namespace SignUpUseCase {
   export type Request = Omit<UserProps, 'id' | 'createdAt' | 'updatedAt'>;
-  export type Response = Pick<UserProps, 'name'> | EmailInUseError;
+  export type Response = string | EmailInUseError;
 }

@@ -1,9 +1,10 @@
-import HashGenerator from '../../../src/application/interfaces/cryptography/HashGenerator';
-import { CreateUserRepository } from '../../../src/data/repositories/auth/create-user-repository';
-import { LoadUserByEmailRepository } from '../../../src/data/repositories/auth/load-user-by-email-repository';
-
-import { SignUp } from '../../../src/domain/use-cases/sign-up';
 import EmailInUseError from '../../../src/errors/EmailInUseError';
+import User from '../../../src/models/user-model';
+import {
+  getRegisteredUser,
+  getSut,
+  getUserToRegister,
+} from '../helpers/sign-up.helper';
 describe('sign-up', () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -13,63 +14,54 @@ describe('sign-up', () => {
       //arrange
       const { mockLoadEmailByUserRepository, signUp } = getSut();
 
+      const registeredUser: User = getRegisteredUser();
+
+      jest
+        .spyOn(mockLoadEmailByUserRepository, 'loadUserByEmail')
+        .mockImplementation(() => Promise.resolve(registeredUser));
+
+      const user = getUserToRegister();
+
+      //act
+      //assert
+      await expect(signUp.execute(user)).rejects.toThrow(EmailInUseError);
+
+      await expect(signUp.execute(user)).rejects.toThrow(
+        'email is already in use'
+      );
+    });
+  });
+
+  describe('when email id does not exist in db', () => {
+    it('username is returned', async () => {
+      //arrange
+      const {
+        mockLoadEmailByUserRepository,
+        mockCreateUserRepository,
+        mockHashGenerator,
+        signUp,
+      } = getSut();
+
+      const user = getUserToRegister();
+
       jest
         .spyOn(mockLoadEmailByUserRepository, 'loadUserByEmail')
         .mockImplementation(() => Promise.resolve(null));
 
+      jest
+        .spyOn(mockCreateUserRepository, 'registerUser')
+        .mockImplementation(() => Promise.resolve(user.name));
+
+      jest
+        .spyOn(mockHashGenerator, 'hash')
+        .mockImplementation(() => Promise.resolve(''));
       //act
 
-      try {
-        await signUp.execute({
-          name: '',
-          email: '',
-          password: '',
-          repeat_password: '',
-        });
-      } catch (error) {
-        if (error instanceof Error) {
-          //assert
-          expect(error).toBeInstanceOf(EmailInUseError);
-          expect(error.message).toEqual('email is already in use');
-        }
-      }
+      const result = await signUp.execute(user);
+
+      // assert
+
+      expect(result).toBe(user.name);
     });
   });
 });
-
-const getSut = () => {
-  const mockCreateUserRepository: CreateUserRepository = {
-    registerUser: function (
-      userData: CreateUserRepository.Request
-    ): Promise<string> {
-      throw new Error('Function not implemented.');
-    },
-  };
-
-  const mockLoadEmailByUserRepository: LoadUserByEmailRepository = {
-    loadUserByEmail: function (
-      email: string
-    ): Promise<LoadUserByEmailRepository.Response> {
-      throw new Error('Function not implemented.');
-    },
-  };
-
-  const mockHashGenerator: HashGenerator = {
-    hash: function (data: string): string | Promise<string> {
-      throw new Error('Function not implemented.');
-    },
-  };
-
-  const signUp = new SignUp(
-    mockCreateUserRepository,
-    mockLoadEmailByUserRepository,
-    mockHashGenerator
-  );
-
-  return {
-    mockCreateUserRepository,
-    mockLoadEmailByUserRepository,
-    mockHashGenerator,
-    signUp,
-  };
-};

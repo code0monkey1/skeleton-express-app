@@ -14,16 +14,22 @@ export class SignUp implements SignUpUseCase {
   async execute(
     userData: SignUpUseCase.Request
   ): Promise<SignUpUseCase.Response> {
-    // if the email exists, throw email in use error
-
-    const user = await this.loadUserByEmailRepository.loadUserByEmail(
+    const userExists = await this.loadUserByEmailRepository.loadUserByEmail(
       userData.email
     );
 
-    if (!user) {
+    if (userExists) {
       throw new EmailInUseError();
     }
 
-    return user;
+    const hashedPassword = await this.hashGenerator.hash(userData.password);
+
+    const savedUser = await this.createUserRepository.registerUser({
+      name: userData.name,
+      email: userData.email,
+      hashedPassword,
+    });
+
+    return savedUser;
   }
 }
